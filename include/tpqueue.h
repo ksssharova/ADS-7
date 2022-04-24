@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-#include string
+#include <string>
 
 template<typename T>
 class TPQueue {
@@ -10,23 +10,19 @@ class TPQueue {
     T value;
     ITEM* next, * prev;
   };
-  
   ITEM* head, * tail;
-  
-  TPQueue::ITEM* create(cinst T& value) {
+  TPQueue::ITEM* create(const T& value) {
     ITEM* item = new ITEM;
     item->value = value;
     item->next = item->prev = nullptr;
     return item;
   }
-  
  public:
   TPQueue() : head(nullptr), tail(nullptr) {}
   ~TPQueue() {
     while (head)
       pop();
   }
-  
   void push(const T& value) {
         ITEM* temp = head;
         ITEM* item = create(value);
@@ -49,7 +45,6 @@ class TPQueue {
             temp->prev = item;
         }
     }
-  
   T pop() {
     if (!head || !tail)
       throw std::string("The queue is empty!");
